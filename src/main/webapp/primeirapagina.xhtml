@@ -9,12 +9,20 @@
 
 <h:body>
 
-	<h:form>
-		<h:inputText></h:inputText>
-		<h:outputText value="Teste JSF"/>
-		
-		<h:inputTextarea></h:inputTextarea>
-	
+	<h:form id="formPessoa">
+		<h1>Olá JSF</h1>
+		Nome: 
+		<h:inputText id="campoNome" value="#{pessoaBean.nome}"/>
+		<br/>
+		<br/>
+		<h:commandButton value="Adicionar Nome" action="#{pessoaBean.addNome}"/>
+		<br/>
+		<br/>
+		<h:dataTable value="#{pessoaBean.nomes}" var="nome">
+			<h:column>
+				<b><h:outputText value="#{nome}"/></b>			
+			</h:column>
+		</h:dataTable>
 	</h:form>
 
 </h:body>
