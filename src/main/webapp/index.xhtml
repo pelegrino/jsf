@@ -19,7 +19,7 @@
 
 	<h:form id="formPessoa">
 		<h1>Olá JSF</h1>
-		<h:inputText id="nome"/>
+		<h:inputText id="nome" onclick="this.value='Troquei o valor'" onchange="this.value = this.value.toUpperCase();"/>
 		<h:commandButton value="Clicar" onclick="alterarValorDoCampo();"/>
 		<br/>
 		<br/>
