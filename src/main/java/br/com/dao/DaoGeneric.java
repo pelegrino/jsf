@@ -17,4 +17,16 @@ public class DaoGeneric<E> {
 		entityManager.close();
 		
 	}
+	
+	public E merge(E entidade) {
+		EntityManager entityManager = JPAUtil.getEntityManager();
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+		entityTransaction.begin();
+		
+		E retorno = entityManager.merge(entidade);
+		entityTransaction.commit();
+		entityManager.close();
+		
+		return retorno;
+	}
 }
