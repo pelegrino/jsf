@@ -4,7 +4,7 @@
 	
 	<persistence-unit name="jsf">
 	
-	<provider>org.hibernate.ejb.HibernatePersistence</provider>
+	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 	
 	<class>br.com.entidades.Pessoa</class>
 	
