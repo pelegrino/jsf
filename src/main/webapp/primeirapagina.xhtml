@@ -11,26 +11,22 @@
 
 	<h:form id="formPessoa">
 		<h1>Olá JSF</h1>
-		<h:outputLabel value="Nome: " for="campoNome"/>
-		<h:inputText id="campoNome" value="#{pessoaBean.nome}"/>
+		
+		<h:outputLabel value="Nome: "/>
+		<h:inputText value="#{pessoaBean.pessoa.nome}"/>
 		<br/>
+		
+		<h:outputLabel value="Sobrenome: "/>
+		<h:inputText value="#{pessoaBean.pessoa.sobrenome}"/>
 		<br/>
-		<h:outputLabel value="Senha: " for="senha"/>
-		<h:inputSecret id="senha" value="#{pessoaBean.senha}"/>
+		
+		<h:outputLabel value="Idade: "/>
+		<h:inputText value="#{pessoaBean.pessoa.idade}"/>
 		<br/>
-		<br/>
-		<h:outputLabel value="Texto: " for="texto"/>
-		<h:inputTextarea id="texto" value="#{pessoaBean.texto}"/>
-		<br/>
-		<br/>
-		<h:commandButton binding="#{pessoaBean.commandButton}" value="Adicionar Nome" action="#{pessoaBean.addNome}"/>
-		<br/>
-		<br/>
-		<h:dataTable value="#{pessoaBean.nomes}" var="nome">
-			<h:column>
-				<b><h:outputText value="#{nome}"/></b>			
-			</h:column>
-		</h:dataTable>
+		
+		<h:commandButton value="Salvar" action="#{pessoaBean.salvar}"/>
+
+
 	</h:form>
 
 </h:body>
