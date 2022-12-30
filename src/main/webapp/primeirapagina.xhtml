@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:h="http://java.sun.com/jsf/html">
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core">
+
 
 <h:head>
 	<title>Olá JSF</title>
@@ -33,17 +35,23 @@
 		<h:commandButton value="Deletar" action="#{pessoaBean.remove}"/>
 
 
-		<h:dataTable value="#{pessoaBean.pessoas}" var="p">
+		<h:dataTable value="#{pessoaBean.pessoas}" var="pessoa">
 			<h:column>
-				<h:outputText value="#{p.id}"/>
+				<h:outputText value="#{pessoa.id}"/>
 			</h:column>
 		
 			<h:column>
-				<h:outputText value="#{p.nome}"/>
+				<h:outputText value="#{pessoa.nome}"/>
 			</h:column>
 			
 			<h:column>
-				<h:outputText value="#{p.sobrenome}"/>
+				<h:outputText value="#{pessoa.sobrenome}"/>
+			</h:column>
+			
+			<h:column>
+				<h:commandLink value="Editar">
+					<f:setPropertyActionListener value="#{pessoaBean.pessoa}" target="#{pessoa}"/>				
+				</h:commandLink>
 			</h:column>
 		
 		</h:dataTable>
