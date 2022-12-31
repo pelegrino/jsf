@@ -32,7 +32,15 @@
 		<h:inputText value="#{pessoaBean.pessoa.sobrenome}"/>
 		
 		<h:outputLabel value="Idade: "/>
-		<h:inputText value="#{pessoaBean.pessoa.idade}"/>		
+		<h:inputText value="#{pessoaBean.pessoa.idade}"/>	
+		
+		<h:outputLabel value="Sexo: "/>	
+		<h:selectOneMenu id="camposexo" value="#{pessoaBean.pessoa.sexo}">
+			<f:selectItem itemValue="Não Especificado" itemLabel="[-Selecione-]" noSelectionOption="true"/>
+			<f:selectItem itemValue="Masculino"/>
+			<f:selectItem itemValue="Feminino"/>
+		</h:selectOneMenu>
+		
 		
 		<h:outputLabel/>
 		<h:panelGroup>
@@ -61,6 +69,11 @@
 			<h:column>
 				<f:facet name="header">Sobrenome</f:facet>
 				<h:outputText value="#{pessoa.sobrenome}"/>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Sexo</f:facet>
+				<h:outputText value="#{pessoa.sexo}"/>
 			</h:column>
 			
 			<h:column>
