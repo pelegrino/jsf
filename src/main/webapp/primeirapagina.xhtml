@@ -14,26 +14,31 @@
 	<h:form id="formPessoa">
 		<h1>Olá JSF</h1>
 		
+		<h:panelGrid columns="2">
+		<f:facet name="header">
+			<h:outputText value="Cadastro em JSF"/>
+		</f:facet>
+			
 		<h:outputLabel value="Id: "/>
 		<h:inputText value="#{pessoaBean.pessoa.id}" readonly="true"/>
-		<br/>
 		
 		<h:outputLabel value="Nome: "/>
 		<h:inputText value="#{pessoaBean.pessoa.nome}"/>
-		<br/>
 		
 		<h:outputLabel value="Sobrenome: "/>
 		<h:inputText value="#{pessoaBean.pessoa.sobrenome}"/>
-		<br/>
 		
 		<h:outputLabel value="Idade: "/>
-		<h:inputText value="#{pessoaBean.pessoa.idade}"/>
-		<br/>
+		<h:inputText value="#{pessoaBean.pessoa.idade}"/>		
 		
+		<h:outputLabel/>
+		<h:panelGroup>
 		<h:commandButton value="Novo" action="#{pessoaBean.novo}"/>
 		<h:commandButton value="Salvar" action="#{pessoaBean.salvar}"/>
 		<h:commandButton value="Deletar" action="#{pessoaBean.remove}"/>
-
+		</h:panelGroup>
+		
+		</h:panelGrid>
 
 		<h:dataTable value="#{pessoaBean.pessoas}" var="pessoa">
 			<h:column>
