@@ -50,6 +50,10 @@
 			<f:selectItem itemValue="JSF"/>
 		</h:selectManyMenu>
 		
+		<h:outputLabel value="Ativo: "/>	
+		<h:selectBooleanCheckbox value="#{pessoaBean.pessoa.ativo}" />
+			
+		
 		<h:outputLabel/>
 		<h:panelGroup>
 		<h:commandButton value="Novo" action="#{pessoaBean.novo}"/>

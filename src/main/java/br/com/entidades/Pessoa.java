@@ -34,8 +34,18 @@ public class Pessoa implements Serializable{
 	
 	private String[] frameworks;
 	
+	private Boolean ativo;
 	
 	
+	
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
+		
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
 	public void setFrameworks(String[] frameworks) {
 		this.frameworks = frameworks;
 	}
