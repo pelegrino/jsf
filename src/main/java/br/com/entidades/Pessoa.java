@@ -32,6 +32,17 @@ public class Pessoa implements Serializable{
 
 	private String sexo;
 	
+	private String[] frameworks;
+	
+	
+	
+	public void setFrameworks(String[] frameworks) {
+		this.frameworks = frameworks;
+	}
+	
+	public String[] getFrameworks() {
+		return frameworks;
+	}
 	
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
