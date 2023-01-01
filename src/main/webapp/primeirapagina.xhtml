@@ -6,20 +6,16 @@
 
 
 <h:head>
-	<title>Olá JSF</title>
+	<title>Cadastro de Usuários</title>
 </h:head>
 
 <h:body>
 
 	<h:form id="formPessoa">
-	
-		<h:graphicImage height="70" width="70" library="img" name="image.png"/>
-		
-		<h1>Olá JSF</h1>
-		
+
 		<h:panelGrid columns="2">
 		<f:facet name="header">
-			<h:outputText value="Cadastro em JSF"/>
+			<h:outputText value="Cadastro de Usuários"/>
 		</f:facet>
 			
 		<h:outputLabel value="Id: "/>
@@ -52,6 +48,20 @@
 		
 		<h:outputLabel value="Ativo: "/>	
 		<h:selectBooleanCheckbox value="#{pessoaBean.pessoa.ativo}" />
+		
+		<h:outputLabel value="Login: "/>
+		<h:inputText value="#{pessoaBean.pessoa.login}"/>	
+		
+		<h:outputLabel value="Senha: "/>
+		<h:inputSecret value="#{pessoaBean.pessoa.senha}"/>	
+		
+		<h:outputLabel value="Perfil: "/>	
+		<h:selectOneMenu id="perfil" value="#{pessoaBean.pessoa.perfilUser}" required="false">
+			<f:selectItem itemValue="Não Especificado" itemLabel="[-Selecione-]" noSelectionOption="true"/>
+			<f:selectItem itemValue="Administrador"/>
+			<f:selectItem itemValue="Secretario"/>
+			<f:selectItem itemValue="Recepcionista"/>
+		</h:selectOneMenu>
 			
 		
 		<h:outputLabel/>
@@ -66,7 +76,7 @@
 		<br/>
 		<h:dataTable value="#{pessoaBean.pessoas}" var="pessoa" border="1" cellspacing="2" cellpadding="6">
 		<f:facet name="header">
-			Lista de Pessoas Cadastradas
+			Lista de Usuários Cadastrados
 		</f:facet>
 		
 			<h:column>
