@@ -68,7 +68,7 @@
 		<h:panelGroup>
 		<h:commandButton value="Novo" action="#{pessoaBean.novo}" image="/resources/img/contact_new.png" title="Novo"/>
 		<h:commandButton value="Salvar" action="#{pessoaBean.salvar}" image="/resources/img/save_disk.png" title="Salvar"/>
-		<h:commandButton value="Deletar" action="#{pessoaBean.remove}" image="/resources/img/delete.png" title="Deletar"/>
+		<h:commandButton value="Deletar" action="#{pessoaBean.remove}" image="/resources/img/delete.png" title="Deletar" rendered="#{pessoaBean.permiteAcesso('Administrador')}"/>
 		<h:commandButton value="Limpar" type="reset" image="/resources/img/clear.png" title="Limpar"/>
 		</h:panelGroup>
 		
@@ -107,7 +107,7 @@
 				</h:commandLink>
 			</h:column>
 			
-			<h:column>
+			<h:column rendered="#{pessoaBean.permiteAcesso('Administrador')}">
 				<f:facet name="header">Excluir</f:facet>
 				<h:commandLink action="#{pessoaBean.remove}" title="Excluir">
 					<f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}" />	
