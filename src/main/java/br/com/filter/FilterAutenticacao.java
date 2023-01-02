@@ -32,7 +32,6 @@ public class FilterAutenticacao implements Filter {
 		HttpSession session = req.getSession();
 		
 		Pessoa usuarioLogado = (Pessoa) session.getAttribute("usuarioLogado");
-		
 		String url = req.getServletPath();
 		
 		if (!url.equalsIgnoreCase("index.jsf") && usuarioLogado == null) {
