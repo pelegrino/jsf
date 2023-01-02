@@ -5,8 +5,8 @@
 	<persistence-unit name="jsf">
 	
 	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-	
 	<class>br.com.entidades.Pessoa</class>
+	<class>br.com.entidades.Lancamento</class>
 	
 	<properties>
 		<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/jsf" />
