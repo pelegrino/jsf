@@ -75,6 +75,22 @@
 				<h:outputLabel value="#{Lanc.usuario.nome}"/>
 			</h:column>
 			
+			<h:column>
+				<f:facet name="header">Editar</f:facet>
+				<h:commandLink title="Editar">
+					<f:setPropertyActionListener value="#{Lanc}" target="#{lancamentoBean.lancamento}" />
+					<h:graphicImage value="/resources/img/edit.png"/>				
+				</h:commandLink>
+			</h:column>
+			
+			<h:column rendered="#{pessoaBean.permiteAcesso('Administrador')}">
+				<f:facet name="header">Excluir</f:facet>
+				<h:commandLink action="#{lancamentoBean.remove}" title="Excluir">
+					<f:setPropertyActionListener value="#{Lanc}" target="#{lancamentoBean.lancamento}" />	
+					<h:graphicImage value="/resources/img/delete.png"/>				
+				</h:commandLink>
+			</h:column>
+			
 		</h:dataTable>
 		
 		</h:form>
