@@ -42,6 +42,16 @@ public class Pessoa implements Serializable{
 	
 	private String perfilUser;
 	
+	private String nivelProgramador;
+	
+	
+	public void setNivelProgramador(String nivelProgramador) {
+		this.nivelProgramador = nivelProgramador;
+	}
+	
+	public String getNivelProgramador() {
+		return nivelProgramador;
+	}
 	
 	public void setPerfilUser(String perfilUser) {
 		this.perfilUser = perfilUser;
