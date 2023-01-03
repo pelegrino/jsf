@@ -42,6 +42,11 @@
 			<f:selectItem itemValue="Feminino"/>
 		</h:selectOneMenu>
 		
+		<h:outputLabel value="Nascimento: "/>
+		<h:inputText value="#{pessoaBean.pessoa.dataNascimento}" converterMessage="Data errada!">
+			<f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR" timeZone="GMT-03:00"/>
+		</h:inputText>
+		
 		<h:outputLabel value="Frameworks: "/>	
 		<h:selectManyMenu id="campoframeworks" style="height:90px;" value="#{pessoaBean.pessoa.frameworks}">
 			<f:selectItem itemValue="Hibernate"/>
