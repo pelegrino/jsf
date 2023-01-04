@@ -124,6 +124,17 @@ public class PessoaBean {
 		return pessoas;
 	}
 	
+	public String deslogar() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
+		externalContext.getSessionMap().remove("usuarioLogado");
+		
+		HttpServletRequest httpServletRequest = (HttpServletRequest) context.getCurrentInstance().getExternalContext().getRequest();
+		httpServletRequest.getSession().invalidate();
+		
+		return "index.jsf";
+	}
+	
 	public String logar() {
 		Pessoa pessoaUser =  iDaoPessoa.consultarUsuario(pessoa.getLogin(), pessoa.getSenha());
 		
