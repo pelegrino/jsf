@@ -27,7 +27,9 @@
 		<h:inputText value="#{pessoaBean.pessoa.id}" readonly="true"/>
 		
 		<h:outputLabel value="Nome: "/>
-		<h:inputText value="#{pessoaBean.pessoa.nome}"/>
+		<h:inputText value="#{pessoaBean.pessoa.nome}" required="true" requiredMessage="Informe o nome do usuário" validatorMessage="O nome de ter no mínimo 3 letras">
+			<f:validateLength minimum="3" maximum="50"/>
+		</h:inputText>
 		
 		<h:outputLabel value="Sobrenome: "/>
 		<h:inputText value="#{pessoaBean.pessoa.sobrenome}"/>
@@ -55,6 +57,35 @@
 			<f:selectItem itemValue="Prime Faces"/>
 			<f:selectItem itemValue="JSF"/>
 		</h:selectManyMenu>
+		
+		<h:outputLabel value="CEP:"/>
+		<h:inputText value="#{pessoaBean.pessoa.cep}">
+			<f:ajax event="blur" execute="@this" listener="#{pessoaBean.pesquisaCep}" render="logradouro complemento bairro localidade uf unidade ibge gia"/>
+		</h:inputText>
+		
+		<h:outputLabel value="Logradouro: "/>
+		<h:inputText value="#{pessoaBean.pessoa.logradouro}" id="logradouro"/>
+		
+		<h:outputLabel value="Complemento: "/>
+		<h:inputText value="#{pessoaBean.pessoa.complemento}" id="complemento"/>
+		
+		<h:outputLabel value="Bairro: "/>
+		<h:inputText value="#{pessoaBean.pessoa.bairro}" id="bairro"/>
+		
+		<h:outputLabel value="Localidade: "/>
+		<h:inputText value="#{pessoaBean.pessoa.localidade}" id="localidade"/>
+		
+		<h:outputLabel value="UF: "/>
+		<h:inputText value="#{pessoaBean.pessoa.uf}" id="uf"/>
+		
+		<h:outputLabel value="Unidade: "/>
+		<h:inputText value="#{pessoaBean.pessoa.unidade}" id="unidade"/>
+		
+		<h:outputLabel value="IBGE: "/>
+		<h:inputText value="#{pessoaBean.pessoa.ibge}" id="ibge"/>
+		
+		<h:outputLabel value="GIA: "/>
+		<h:inputText value="#{pessoaBean.pessoa.gia}" id="gia"/>
 		
 		<h:outputLabel value="Ativo: "/>	
 		<h:selectBooleanCheckbox value="#{pessoaBean.pessoa.ativo}" />
@@ -96,10 +127,13 @@
 		<h:commandButton value="Novo" action="#{pessoaBean.novo}" image="/resources/img/contact_new.png" title="Novo"/>
 		<h:commandButton style="margin-left:1cm;" value="Salvar" action="#{pessoaBean.salvar}" image="/resources/img/save_disk.png" title="Salvar"/>
 		<h:commandButton style="margin-left:1cm;" value="Deletar" action="#{pessoaBean.remove}" image="/resources/img/delete.png" title="Deletar" rendered="#{pessoaBean.permiteAcesso('Administrador')}"/>
-		<h:commandButton style="margin-left:1cm;" value="Limpar" type="reset" image="/resources/img/clear.png" title="Limpar"/>
+		<h:commandButton style="margin-left:1cm;" value="Limpar" action="#{pessoaBean.limpar}" image="/resources/img/clear.png" title="Limpar"/>
 		</h:panelGroup>
 		
 		</h:panelGrid>
+		</h:form>
+		
+		<h:form>
 		<br/>
 		<h:dataTable value="#{pessoaBean.pessoas}" var="pessoa" border="1" cellspacing="2" cellpadding="6">
 		<f:facet name="header">
@@ -143,9 +177,9 @@
 			</h:column>
 		
 		</h:dataTable>
+		</h:form>
 
-
-	</h:form>
+	
 
 </h:body>
 
