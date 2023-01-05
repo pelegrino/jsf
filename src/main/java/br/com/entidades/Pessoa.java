@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -68,7 +69,17 @@ public class Pessoa implements Serializable{
 	@Transient //Não grava no banco
 	private Estados estados;
 	
+	@ManyToOne
+	private Cidades cidades;
 	
+	
+	public void setCidades(Cidades cidades) {
+		this.cidades = cidades;
+	}
+	
+	public Cidades getCidades() {
+		return cidades;
+	}
 
 	public void setEstados(Estados estados) {
 		this.estados = estados;
