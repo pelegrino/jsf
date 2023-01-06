@@ -131,7 +131,8 @@
 		</h:selectOneMenu>
 		
 		<h:outputLabel value="Cidades:"/>
-		<h:selectOneMenu value="#{pessoaBean.pessoa.cidades}" id="comboCidade">
+		<h:selectOneMenu value="#{pessoaBean.pessoa.cidades}" immediate="true" id="comboCidade">
+			<f:selectItem noSelectionOption="true" itemLabel="[-Selecione a Cidade-]"/>
 			<f:selectItems value="#{pessoaBean.cidades}"/>
 		</h:selectOneMenu>
 		

@@ -186,7 +186,7 @@ public class PessoaBean {
 			if (estado != null) {
 				pessoa.setEstados(estado);
 				
-				List<Cidades> cidades = JPAUtil.getEntityManager().createQuery("from cidades where estados.id = " + codigoEstado).getResultList();
+				List<Cidades> cidades = JPAUtil.getEntityManager().createQuery("from cidades where estados_id = " + codigoEstado).getResultList();
 				
 				List<SelectItem> selectItemsCidade = new ArrayList<SelectItem>();
 				
