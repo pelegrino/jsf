@@ -1,4 +1,4 @@
-package br.com.jsf;
+	package br.com.jsf;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -186,7 +186,7 @@ public class PessoaBean {
 			if (estado != null) {
 				pessoa.setEstados(estado);
 				
-				List<Cidades> cidades = JPAUtil.getEntityManager().createQuery("from cidades where estados_id = " + codigoEstado).getResultList();
+				List<Cidades> cidades = JPAUtil.getEntityManager().createQuery("from Cidades where estados.id = " + codigoEstado).getResultList();
 				
 				List<SelectItem> selectItemsCidade = new ArrayList<SelectItem>();
 				
