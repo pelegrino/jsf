@@ -15,7 +15,7 @@
 
 	<ui:include src="/menu.xhtml"/>
 
-	<h:form id="formPessoa">
+	<h:form id="formPessoa" enctype="multipart/form-data">
 
 		<h:messages infoStyle="color:green"/>
 
@@ -26,6 +26,9 @@
 			
 		<h:outputLabel value="Id: "/>
 		<h:inputText value="#{pessoaBean.pessoa.id}" readonly="true"/>
+		
+		<h:outputLabel value="Foto: "/>
+		<h:inputFile id="foto" value="#{pessoaBean.arquivoFoto}"></h:inputFile>
 		
 		<h:outputLabel value="Nome: "/>
 		<h:inputText value="#{pessoaBean.pessoa.nome}" required="true" requiredMessage="Informe o nome do usuário" pt:placeholder="Informe o Nome" validatorMessage="O nome de ter no mínimo 3 letras">
