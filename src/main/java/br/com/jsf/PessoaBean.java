@@ -1,5 +1,7 @@
 	package br.com.jsf;
 
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -20,11 +22,11 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.model.SelectItem;
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
-
-import org.w3c.dom.html.HTMLTableSectionElement;
+import javax.xml.bind.DatatypeConverter;
 
 import com.google.gson.Gson;
 
@@ -51,7 +53,38 @@ public class PessoaBean {
 	
 	private Part arquivoFoto;
 	
-	public String salvar() {
+	public String salvar() throws IOException {
+		//Processar imagens
+		byte[] imagemByte = getByte(arquivoFoto.getInputStream());
+		pessoa.setFotoIconBase64Original(imagemByte); //Imagem original
+		
+		//Transformar em bufferimage
+		BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(imagemByte));
+		
+		//Pega o tipo da imagem
+		int type = bufferedImage.getType() == 0? BufferedImage.TYPE_INT_ARGB : bufferedImage.getHeight();
+		
+		int largura = 200;
+		int altura = 200;
+		
+		//Criar miniatura
+		BufferedImage resizedImage = new BufferedImage(largura, altura, type);
+		Graphics2D g = resizedImage.createGraphics();
+		g.drawImage(bufferedImage, 0, 0, largura, altura, null);
+		g.dispose();
+		
+		//Escrever novamente a imagem em tamanho menor
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		String extensao = arquivoFoto.getContentType().split("\\/")[1];
+		ImageIO.write(resizedImage, extensao, baos);
+		
+		
+		String miniImagem = "data:" + arquivoFoto.getContentType() + ";64," + DatatypeConverter.printBase64Binary(baos.toByteArray());
+		
+		//Processar imagens
+		pessoa.setFotoIconBase64(miniImagem);
+		pessoa.setExtensao(extensao);
+		
 		
 		pessoa = daoGeneric.merge(pessoa);
 		carregarPessoas();
