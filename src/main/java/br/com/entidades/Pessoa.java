@@ -16,6 +16,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -27,8 +30,12 @@ public class Pessoa implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@NotEmpty
+	@Size(min = 3, max = 50, message = "O nome deve ser preenchido")
 	private String nome;
 	
+	@NotEmpty(message="O sobrenome deve ser preenchido")
+	@NotNull(message="O sobrenome deve ser preenchido")
 	private String sobrenome;
 	
 	private Integer idade;
