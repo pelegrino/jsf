@@ -12,6 +12,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -62,7 +63,7 @@ public class PessoaBean {
 		BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(imagemByte));
 		
 		//Pega o tipo da imagem
-		int type = bufferedImage.getType() == 0? BufferedImage.TYPE_INT_ARGB : bufferedImage.getHeight();
+		int type = bufferedImage.getType() == 0? BufferedImage.TYPE_INT_ARGB : bufferedImage.getType();
 		
 		int largura = 200;
 		int altura = 200;
@@ -79,7 +80,7 @@ public class PessoaBean {
 		ImageIO.write(resizedImage, extensao, baos);
 		
 		
-		String miniImagem = "data:" + arquivoFoto.getContentType() + ";64," + DatatypeConverter.printBase64Binary(baos.toByteArray());
+		String miniImagem = "data:" + arquivoFoto.getContentType() + ";base64," + DatatypeConverter.printBase64Binary(baos.toByteArray());
 		
 		//Processar imagens
 		pessoa.setFotoIconBase64(miniImagem);
@@ -296,6 +297,11 @@ public class PessoaBean {
 		}
 		
 		return buf;
+	}
+	
+	public void download() {
+		Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+		String fileDownloadId = params.get("fileDownloadId");
 	}
 	
 }
