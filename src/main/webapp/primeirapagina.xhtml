@@ -2,6 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:b="http://bootsfaces.net/ui"
 	  xmlns:f="http://java.sun.com/jsf/core"
 	  xmlns:ui="http://java.sun.com/jsf/facelets"
 	  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
@@ -25,33 +26,33 @@
 		</f:facet>
 			
 		<h:outputLabel value="Id: "/>
-		<h:inputText value="#{pessoaBean.pessoa.id}" readonly="true"/>
+		<b:inputText value="#{pessoaBean.pessoa.id}" readonly="true"/>
 		
 		<h:outputLabel value="Foto: "/>
 		<h:inputFile id="foto" value="#{pessoaBean.arquivoFoto}"></h:inputFile>
 		
 		<h:outputLabel value="Nome: "/>
-		<h:inputText value="#{pessoaBean.pessoa.nome}" required="true" requiredMessage="Informe o nome do usuário" pt:placeholder="Informe o Nome" validatorMessage="O nome de ter no mínimo 3 letras">
+		<b:inputText value="#{pessoaBean.pessoa.nome}" required="true" requiredMessage="Informe o nome do usuário" pt:placeholder="Informe o Nome" validatorMessage="O nome de ter no mínimo 3 letras">
 			<f:validateLength minimum="3" maximum="50"/>
-		</h:inputText>
+		</b:inputText>
 		
 		<h:outputLabel value="Sobrenome: "/>
-		<h:inputText value="#{pessoaBean.pessoa.sobrenome}"/>
+		<b:inputText value="#{pessoaBean.pessoa.sobrenome}"/>
 		
 		<h:outputLabel value="Idade: "/>
-		<h:inputText value="#{pessoaBean.pessoa.idade}"/>	
+		<b:inputText value="#{pessoaBean.pessoa.idade}"/>	
 		
 		<h:outputLabel value="Sexo: "/>	
-		<h:selectOneMenu id="camposexo" value="#{pessoaBean.pessoa.sexo}" required="false">
+		<b:selectOneMenu id="camposexo" value="#{pessoaBean.pessoa.sexo}" required="false">
 			<f:selectItem itemValue="Não Especificado" itemLabel="[-Selecione-]" noSelectionOption="true"/>
 			<f:selectItem itemValue="Masculino"/>
 			<f:selectItem itemValue="Feminino"/>
-		</h:selectOneMenu>
+		</b:selectOneMenu>
 		
 		<h:outputLabel value="Nascimento: "/>
-		<h:inputText value="#{pessoaBean.pessoa.dataNascimento}" converterMessage="Data errada!">
+		<b:inputText value="#{pessoaBean.pessoa.dataNascimento}" converterMessage="Data errada!">
 			<f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR" timeZone="GMT-03:00"/>
-		</h:inputText>
+		</b:inputText>
 		
 		<h:outputLabel value="Frameworks: "/>	
 		<h:selectManyMenu id="campoframeworks" style="height:90px;" value="#{pessoaBean.pessoa.frameworks}">
@@ -63,50 +64,50 @@
 		</h:selectManyMenu>
 		
 		<h:outputLabel value="CEP:"/>
-		<h:inputText value="#{pessoaBean.pessoa.cep}">
+		<b:inputText value="#{pessoaBean.pessoa.cep}">
 			<f:ajax event="blur" execute="@this" listener="#{pessoaBean.pesquisaCep}" render="logradouro complemento bairro localidade uf unidade ibge gia"/>
-		</h:inputText>
+		</b:inputText>
 		
 		<h:outputLabel value="Logradouro: "/>
-		<h:inputText value="#{pessoaBean.pessoa.logradouro}" id="logradouro"/>
+		<b:inputText value="#{pessoaBean.pessoa.logradouro}" id="logradouro"/>
 		
 		<h:outputLabel value="Complemento: "/>
-		<h:inputText value="#{pessoaBean.pessoa.complemento}" id="complemento"/>
+		<b:inputText value="#{pessoaBean.pessoa.complemento}" id="complemento"/>
 		
 		<h:outputLabel value="Bairro: "/>
-		<h:inputText value="#{pessoaBean.pessoa.bairro}" id="bairro"/>
+		<b:inputText value="#{pessoaBean.pessoa.bairro}" id="bairro"/>
 		
 		<h:outputLabel value="Localidade: "/>
-		<h:inputText value="#{pessoaBean.pessoa.localidade}" id="localidade"/>
+		<b:inputText value="#{pessoaBean.pessoa.localidade}" id="localidade"/>
 		
 		<h:outputLabel value="UF: "/>
-		<h:inputText value="#{pessoaBean.pessoa.uf}" id="uf"/>
+		<b:inputText value="#{pessoaBean.pessoa.uf}" id="uf"/>
 		
 		<h:outputLabel value="Unidade: "/>
-		<h:inputText value="#{pessoaBean.pessoa.unidade}" id="unidade"/>
+		<b:inputText value="#{pessoaBean.pessoa.unidade}" id="unidade"/>
 		
 		<h:outputLabel value="IBGE: "/>
-		<h:inputText value="#{pessoaBean.pessoa.ibge}" id="ibge"/>
+		<b:inputText value="#{pessoaBean.pessoa.ibge}" id="ibge"/>
 		
 		<h:outputLabel value="GIA: "/>
-		<h:inputText value="#{pessoaBean.pessoa.gia}" id="gia"/>
+		<b:inputText value="#{pessoaBean.pessoa.gia}" id="gia"/>
 		
 		<h:outputLabel value="Ativo: "/>	
 		<h:selectBooleanCheckbox value="#{pessoaBean.pessoa.ativo}" />
 		
 		<h:outputLabel value="Login: "/>
-		<h:inputText value="#{pessoaBean.pessoa.login}"/>	
+		<b:inputText value="#{pessoaBean.pessoa.login}"/>	
 		
 		<h:outputLabel value="Senha: "/>
-		<h:inputSecret value="#{pessoaBean.pessoa.senha}"/>	
+		<b:inputSecret value="#{pessoaBean.pessoa.senha}"/>	
 		
 		<h:outputLabel value="Perfil: "/>	
-		<h:selectOneMenu id="perfil" value="#{pessoaBean.pessoa.perfilUser}" required="false">
+		<b:selectOneMenu id="perfil" value="#{pessoaBean.pessoa.perfilUser}" required="false">
 			<f:selectItem itemValue="Não Especificado" itemLabel="[-Selecione-]" noSelectionOption="true"/>
 			<f:selectItem itemValue="Administrador"/>
 			<f:selectItem itemValue="Secretario"/>
 			<f:selectItem itemValue="Recepcionista"/>
-		</h:selectOneMenu>
+		</b:selectOneMenu>
 		
 		<h:outputLabel value="Programador: "/>
 		<h:selectOneRadio value="#{pessoaBean.pessoa.nivelProgramador}" layout="pageDirection">
@@ -127,17 +128,17 @@
 			
 			
 		<h:outputLabel value="Estados:"/>
-		<h:selectOneMenu value="#{pessoaBean.pessoa.estados}" immediate="true" id="comboEstados" converter="estadoConverter">
+		<b:selectOneMenu value="#{pessoaBean.pessoa.estados}" immediate="true" id="comboEstados" converter="estadoConverter">
 			<f:selectItem itemLabel="[-Selecione o Estado-]" noSelectionOption="true"/>
 			<f:selectItems value="#{pessoaBean.estados}"/>
 			<f:ajax event="change" execute="@this" render="comboCidade" listener="#{pessoaBean.carregaCidades}"/>
-		</h:selectOneMenu>
+		</b:selectOneMenu>
 		
 		<h:outputLabel value="Cidades:"/>
-		<h:selectOneMenu value="#{pessoaBean.pessoa.cidades}" immediate="true" id="comboCidade" converter="cidadeConverter">
+		<b:selectOneMenu value="#{pessoaBean.pessoa.cidades}" immediate="true" id="comboCidade" converter="cidadeConverter">
 			<f:selectItem noSelectionOption="true" itemLabel="[-Selecione a Cidade-]"/>
 			<f:selectItems value="#{pessoaBean.cidades}"/>
-		</h:selectOneMenu>
+		</b:selectOneMenu>
 		
 			
 		<h:outputLabel/>
@@ -153,7 +154,8 @@
 		
 		<h:form>
 		<br/>
-		<h:dataTable value="#{pessoaBean.pessoas}" var="pessoa" border="1" cellspacing="2" cellpadding="6">
+		
+		<b:dataTable value="#{pessoaBean.pessoas}" var="pessoa" border="1" cellspacing="2" cellpadding="6">
 		<f:facet name="header">
 			Lista de Usuários Cadastrados
 		</f:facet>
@@ -202,7 +204,7 @@
 				</h:commandLink>
 			</h:column>
 		
-		</h:dataTable>
+		</b:dataTable>
 		</h:form>
 
 	
