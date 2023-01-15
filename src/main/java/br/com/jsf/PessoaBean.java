@@ -8,6 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -16,14 +17,14 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.component.html.HtmlSelectOneMenu;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.model.SelectItem;
 import javax.imageio.ImageIO;
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -38,19 +39,29 @@ import br.com.entidades.Estados;
 import br.com.entidades.Pessoa;
 import br.com.jpautil.JPAUtil;
 import br.com.repository.IDaoPessoa;
-import br.com.repository.IDaoPessoaImpl;
 
 
-@ViewScoped
-@ManagedBean(name = "pessoaBean")
-public class PessoaBean {
+@javax.faces.view.ViewScoped
+@Named(value = "pessoaBean")
+public class PessoaBean implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+
+	@Inject
+	private JPAUtil jpaUtil;
 	
 	private Pessoa pessoa = new Pessoa();
-	private DaoGeneric<Pessoa> daoGeneric = new DaoGeneric<Pessoa>();
+	
+	@Inject
+	private DaoGeneric<Pessoa> daoGeneric;
+	
 	private List<Pessoa> pessoas = new ArrayList<Pessoa>();
-	private IDaoPessoa iDaoPessoa = new IDaoPessoaImpl();
+	
+	@Inject
+	private IDaoPessoa iDaoPessoa;
 	
 	private List<SelectItem> estados;
+	
 	private List<SelectItem> cidades;
 	
 	private Part arquivoFoto;
@@ -176,6 +187,7 @@ public class PessoaBean {
 		return pessoas;
 	}
 	
+	@SuppressWarnings("static-access")
 	public String deslogar() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		ExternalContext externalContext = context.getExternalContext();
@@ -220,6 +232,7 @@ public class PessoaBean {
 		return estados;
 	}
 
+	@SuppressWarnings("unchecked")
 	public void carregaCidades(AjaxBehaviorEvent event) {
 
 		Estados estado = (Estados) ((HtmlSelectOneMenu) event.getSource()).getValue();
@@ -227,7 +240,8 @@ public class PessoaBean {
 			if (estado != null) {
 				pessoa.setEstados(estado);
 				
-				List<Cidades> cidades = JPAUtil.getEntityManager().createQuery("from Cidades where estados.id = " + estado.getId()).getResultList();
+				//duvida se criei certo o jpautil
+				List<Cidades> cidades = jpaUtil.getEntityManager().createQuery("from Cidades where estados.id = " + estado.getId()).getResultList();
 				
 				List<SelectItem> selectItemsCidade = new ArrayList<SelectItem>();
 				
@@ -240,13 +254,14 @@ public class PessoaBean {
 			}
 		}
 	
-	public void editar() {
+	@SuppressWarnings("unchecked")
+	public String editar() {
 		if (pessoa.getCidades() != null) {
 			Estados estado = pessoa.getCidades().getEstados();
 			pessoa.setEstados(estado);
 			
-			
-			List<Cidades> cidades = JPAUtil.getEntityManager().createQuery("from Cidades where estados.id = " + estado.getId()).getResultList();
+			//duvida se criei certo o jpautil
+			List<Cidades> cidades = jpaUtil.getEntityManager().createQuery("from Cidades where estados.id = " + estado.getId()).getResultList();
 			
 			List<SelectItem> selectItemsCidade = new ArrayList<SelectItem>();
 			
@@ -257,6 +272,8 @@ public class PessoaBean {
 			
 			setCidades(selectItemsCidade);
 		}
+		
+		return "";
 		
 	}
 	

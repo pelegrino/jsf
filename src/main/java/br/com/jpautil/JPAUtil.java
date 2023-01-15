@@ -1,28 +1,36 @@
 package br.com.jpautil;
 
+import java.io.Serializable;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Produces;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class JPAUtil {
+
+@ApplicationScoped
+public class JPAUtil implements Serializable {
 	
 	
-	private static EntityManagerFactory factory = null;
+	private static final long serialVersionUID = 1L;
 	
-	static {
-		
+	private EntityManagerFactory factory = null;
+	
+	public JPAUtil() {
 		if (factory == null) {
 			factory =  Persistence.createEntityManagerFactory("jsf");
-		}
-	}
-
+		}	}
 	
-	public static EntityManager getEntityManager() {
+	@Produces
+	@RequestScoped
+	public EntityManager getEntityManager() {
 		return factory.createEntityManager();
 	}
 	
 	
-	public static Object getPrimaryKey(Object entity) {
+	public Object getPrimaryKey(Object entity) {
 		return factory.getPersistenceUnitUtil().getIdentifier(entity);
 	}
 	
