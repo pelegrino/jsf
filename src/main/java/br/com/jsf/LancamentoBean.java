@@ -44,6 +44,7 @@ public class LancamentoBean implements Serializable {
 		
 		carregarLancamentos();
 		
+		FacesContext.getCurrentInstance().addMessage("msg", new FacesMessage("Incluído com êxito!"));
 		return "";
 	}
 	

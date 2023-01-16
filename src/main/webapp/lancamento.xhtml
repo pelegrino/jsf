@@ -22,6 +22,8 @@
 		
 		
 		<b:panelGrid columns="2">
+		
+			<b:panel>
 			<f:facet name="header" >
 			<h:outputText value="Lançamentos"/>
 			</f:facet>
@@ -37,6 +39,13 @@
 			</b:column>
 			
 			<b:column>
+			<h:outputLabel value="Inicio"/>
+			<b:datepicker required="true" requiredMessage="Data Inicial" value="#{lancamentoBean.lancamento.datainicio}"/>
+			</b:column>
+			</b:panel>
+			
+			<b:panel>
+			<b:column>
 			<h:outputLabel value="Origem:"/>
 			<b:inputText value="#{lancamentoBean.lancamento.empresaOrigem}" required="true" requiredMessage="Informe a empresa de origem"/>
 			</b:column>
@@ -46,17 +55,25 @@
 			<b:inputText value="#{lancamentoBean.lancamento.empresaDestino}" required="true" requiredMessage="Informe a empresa de destino"/>
 			</b:column>
 			
+			<b:column>
+			<h:outputLabel value="Final"/>
+			<b:datepicker required="true" requiredMessage="Data final" value="#{lancamentoBean.lancamento.dataFim}"/>
+			</b:column>
+			
+			</b:panel>
+		</b:panelGrid>
+		
 			<h:outputLabel/>
 			<h:panelGroup>
 				<h:commandButton value="Novo" action="#{lancamentoBean.novo}" image="/resources/img/contact_new.png" title="Novo"/>
 				<h:commandButton style="margin-left:1cm;" value="Salvar" action="#{lancamentoBean.salvar}" image="/resources/img/save_disk.png" title="Salvar"/>
 				<h:commandButton style="margin-left:1cm;" value="Deletar" action="#{lancamentoBean.remove}" image="/resources/img/delete.png" title="Deletar"/>
-				<h:commandButton style="margin-left:1cm;" value="Limpar" type="reset" image="/resources/img/clear.png" title="Limpar"/>
+				<h:commandButton style="margin-left:1cm;" value="Limpar" action="#{lancamentoBean.novo}" image="/resources/img/clear.png" title="Limpar"/>
 			</h:panelGroup>
-			
-		</b:panelGrid>
+		
 		</b:form>
 		
+		<br/><br/>
 		
 		<b:form>
 		<b:dataTable value="#{lancamentoBean.lancamentos}" var="Lanc" border="2">

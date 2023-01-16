@@ -1,6 +1,7 @@
 package br.com.entidades;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.ForeignKey;
 
@@ -30,6 +33,29 @@ public class Lancamento implements Serializable {
 	@ManyToOne(optional = false)
 	@ForeignKey(name="usuario_fk")
 	private Pessoa usuario;
+	
+	@Temporal(TemporalType.DATE)
+	private Date datainicio;
+	
+	@Temporal(TemporalType.DATE)
+	private Date dataFim;
+	
+	
+	public Date getDatainicio() {
+		return datainicio;
+	}
+
+	public void setDatainicio(Date datainicio) {
+		this.datainicio = datainicio;
+	}
+
+	public Date getDataFim() {
+		return dataFim;
+	}
+
+	public void setDataFim(Date dataFim) {
+		this.dataFim = dataFim;
+	}
 
 	public Long getId() {
 		return id;
