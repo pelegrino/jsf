@@ -56,7 +56,7 @@ public class DaoGeneric<E> implements Serializable {
 		Object id = jpaUtil.getPrimaryKey(entidade);
 		entityManager.createQuery("delete from " + entidade.getClass().getCanonicalName() + " where id = " + id).executeUpdate();
 		entityTransaction.commit();
-		entityManager.close();
+		
 		
 	}
 	

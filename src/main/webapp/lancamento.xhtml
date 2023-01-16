@@ -2,6 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:b="http://bootsfaces.net/ui"
 	  xmlns:f="http://java.sun.com/jsf/core"
 	  xmlns:ui = "http://java.sun.com/jsf/facelets">
 
@@ -14,25 +15,36 @@
 	
 	<ui:include src="/menu.xhtml" />
 
-	<h:form id="formLancamento">
+	<b:messages id="msg"/>
+	
+	
+	<b:form id="formLancamento">
 		
-		<h:form>
-		<h:panelGrid columns="2">
+		
+		<b:panelGrid columns="2">
 			<f:facet name="header" >
 			<h:outputText value="Lançamentos"/>
 			</f:facet>
 			
+			<b:column>
 			<h:outputLabel value="Id:"/>
-			<h:inputText value="#{lancamentoBean.lancamento.id}" readonly="true"/>
+			<b:inputText value="#{lancamentoBean.lancamento.id}" readonly="true"/>
+			</b:column>
 			
+			<b:column>
 			<h:outputLabel value="Nota:"/>
-			<h:inputText value="#{lancamentoBean.lancamento.numeroNotaFiscal}" />
+			<b:inputText value="#{lancamentoBean.lancamento.numeroNotaFiscal}" required="true" requiredMessage="Informe o número da nota"/>
+			</b:column>
 			
+			<b:column>
 			<h:outputLabel value="Origem:"/>
-			<h:inputText value="#{lancamentoBean.lancamento.empresaOrigem}" />
+			<b:inputText value="#{lancamentoBean.lancamento.empresaOrigem}" required="true" requiredMessage="Informe a empresa de origem"/>
+			</b:column>
 			
+			<b:column>
 			<h:outputLabel value="Destino:"/>
-			<h:inputText value="#{lancamentoBean.lancamento.empresaDestino}" />
+			<b:inputText value="#{lancamentoBean.lancamento.empresaDestino}" required="true" requiredMessage="Informe a empresa de destino"/>
+			</b:column>
 			
 			<h:outputLabel/>
 			<h:panelGroup>
@@ -42,35 +54,38 @@
 				<h:commandButton style="margin-left:1cm;" value="Limpar" type="reset" image="/resources/img/clear.png" title="Limpar"/>
 			</h:panelGroup>
 			
-		</h:panelGrid>
+		</b:panelGrid>
+		</b:form>
 		
-		<h:dataTable value="#{lancamentoBean.lancamentos}" var="Lanc" border="2">
+		
+		<b:form>
+		<b:dataTable value="#{lancamentoBean.lancamentos}" var="Lanc" border="2">
 			<f:facet name="header">Lista de Lançamentos</f:facet>
 			
-			<h:column>
+			<b:column>
 				<f:facet name="header">Id</f:facet>
 				<h:outputLabel value="#{Lanc.id}"/>
-			</h:column>
+			</b:column>
 			
-			<h:column>
+			<b:column>
 				<f:facet name="header">Nota Fiscal</f:facet>
 				<h:outputLabel value="#{Lanc.numeroNotaFiscal}"/>
-			</h:column>
+			</b:column>
 			
-			<h:column>
+			<b:column>
 				<f:facet name="header">Origem</f:facet>
 				<h:outputLabel value="#{Lanc.empresaOrigem}"/>
-			</h:column>
+			</b:column>
 			
-			<h:column>
+			<b:column>
 				<f:facet name="header">Destino</f:facet>
 				<h:outputLabel value="#{Lanc.empresaDestino}"/>
-			</h:column>
+			</b:column>
 			
-			<h:column>
+			<b:column>
 				<f:facet name="header">Usuário</f:facet>
 				<h:outputLabel value="#{Lanc.usuario.nome}"/>
-			</h:column>
+			</b:column>
 			
 			<h:column>
 				<f:facet name="header">Editar</f:facet>
@@ -88,11 +103,8 @@
 				</h:commandLink>
 			</h:column>
 			
-		</h:dataTable>
-		
-		</h:form>
-
-	</h:form>
+		</b:dataTable>
+		</b:form>
 
 </h:body>
 

@@ -18,7 +18,7 @@
 
 	<h:form id="formPessoa" enctype="multipart/form-data">
 
-		<h:messages infoStyle="color:green"/>
+		<b:messages/>
 
 		<h:panelGrid columns="4">
 		<f:facet name="header">
@@ -188,8 +188,8 @@
 			<f:selectItems value="#{pessoaBean.cidades}"/>
 		</b:selectOneMenu>
 		</b:column>
+		
 			
-		<b:column>	
 		<h:outputLabel/>
 		<h:panelGroup>
 		<h:commandButton value="Novo" action="#{pessoaBean.novo}" image="/resources/img/contact_new.png" title="Novo" />
@@ -197,8 +197,7 @@
 		<h:commandButton style="margin-left:1cm;" value="Deletar" action="#{pessoaBean.remove}" image="/resources/img/delete.png" title="Deletar" rendered="#{pessoaBean.permiteAcesso('Administrador')}" immediate="true"/>
 		<h:commandButton style="margin-left:1cm;" value="Limpar" action="#{pessoaBean.limpar}" image="/resources/img/clear.png" title="Limpar" immediate="true"/>
 		</h:panelGroup>
-		</b:column>
-		
+				
 		</h:panelGrid>
 		</h:form>
 		

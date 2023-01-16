@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -64,6 +65,7 @@ public class LancamentoBean implements Serializable {
 		daoGeneric.deletePorId(lancamento);
 		lancamento = new Lancamento();
 		carregarLancamentos();
+		FacesContext.getCurrentInstance().addMessage("msg", new FacesMessage("Excluído com sucesso"));
 		return "";
 	}
 	
