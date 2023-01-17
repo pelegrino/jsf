@@ -16,15 +16,18 @@
 
 	<ui:include src="/menu.xhtml"/>
 
-	<h:form id="formPessoa" enctype="multipart/form-data">
+	<h:form id="formPessoa" enctype="multipart/form-data" style="margin: 1% 25% 3% 25%;">
 
 		<b:messages/>
 
-		<h:panelGrid columns="4">
+		<h:panelGrid columns="1">
 		<f:facet name="header">
-			<h:outputText value="CADASTRO DE USUÁRIOS"/>
+			<center><h3>Cadastro de Usuários</h3></center>
+			<br/>
 		</f:facet>
-			
+		
+		<b:panel>
+		
 		<b:column>	
 		<h:outputLabel value="Id: "/>
 		<b:inputText value="#{pessoaBean.pessoa.id}" readonly="true"/>
@@ -32,7 +35,7 @@
 		
 		<b:column>
 		<h:outputLabel value="Foto: "/>
-		<h:inputFile id="foto" value="#{pessoaBean.arquivoFoto}"></h:inputFile>
+		<h:inputFile id="foto" value="#{pessoaBean.arquivoFoto}"></h:inputFile><br/>
 		</b:column>
 		
 		<b:column>
@@ -69,6 +72,7 @@
 		</b:column>
 		
 		<b:column>
+		<br/>
 		<h:outputLabel value="Frameworks: "/>	
 		<h:selectManyMenu id="campoframeworks" style="height:90px;" value="#{pessoaBean.pessoa.frameworks}">
 			<f:selectItem itemValue="Hibernate"/>
@@ -80,6 +84,7 @@
 		</b:column>
 		
 		<b:column>
+		<br/>
 		<h:outputLabel value="CEP:"/>
 		<b:inputText value="#{pessoaBean.pessoa.cep}">
 			<f:ajax event="blur" execute="@this" listener="#{pessoaBean.pesquisaCep}" render="logradouro complemento bairro localidade uf unidade ibge gia"/>
@@ -128,10 +133,11 @@
 		
 		<b:column>
 		<h:outputLabel value="Ativo: "/>	
-		<h:selectBooleanCheckbox value="#{pessoaBean.pessoa.ativo}" />
+		<h:selectBooleanCheckbox value="#{pessoaBean.pessoa.ativo}" /><br/>
 		</b:column>
 		
 		<b:column>
+		<br/>
 		<h:outputLabel value="Login: "/>
 		<b:inputText value="#{pessoaBean.pessoa.login}"/>	
 		</b:column>
@@ -159,10 +165,11 @@
 			<f:selectItem itemValue="S" itemLabel="Senior"/>
 			<f:selectItem itemValue="E" itemLabel="Especialista"/>
 		</h:selectOneRadio>	
-		</b:column>	
+		</b:column><br/>
 		
 		<b:column>
-		<h:outputLabel value="Linguagens: "/>
+		<br/>
+		<h:outputLabel value="Linguagens: " />
 		<h:selectManyCheckbox value="#{pessoaBean.pessoa.linguagens}">
 			<f:selectItem itemValue="1" itemLabel="Java"/>
 			<f:selectItem itemValue="2" itemLabel="Python"/>
@@ -172,7 +179,8 @@
 		</h:selectManyCheckbox>		
 		</b:column>	
 			
-		<b:column>	
+		<b:column>
+		<br/>	
 		<h:outputLabel value="Estados:"/>
 		<b:selectOneMenu value="#{pessoaBean.pessoa.estados}" immediate="true" id="comboEstados" converter="estadoConverter">
 			<f:selectItem itemLabel="[-Selecione o Estado-]" noSelectionOption="true"/>
@@ -182,6 +190,7 @@
 		</b:column>
 		
 		<b:column>
+		<br/>
 		<h:outputLabel value="Cidades:"/>
 		<b:selectOneMenu value="#{pessoaBean.pessoa.cidades}" immediate="true" id="comboCidade" converter="cidadeConverter">
 			<f:selectItem noSelectionOption="true" itemLabel="[-Selecione a Cidade-]"/>
@@ -189,71 +198,79 @@
 		</b:selectOneMenu>
 		</b:column>
 		
-			
+		</b:panel>
+		
+		<b:panel>	
 		<h:outputLabel/>
 		<h:panelGroup>
+		<center>
 		<h:commandButton value="Novo" action="#{pessoaBean.novo}" image="/resources/img/contact_new.png" title="Novo" />
 		<h:commandButton style="margin-left:1cm;" value="Salvar" action="#{pessoaBean.salvar}" image="/resources/img/save_disk.png" title="Salvar"/>
 		<h:commandButton style="margin-left:1cm;" value="Deletar" action="#{pessoaBean.remove}" image="/resources/img/delete.png" title="Deletar" rendered="#{pessoaBean.permiteAcesso('Administrador')}" immediate="true"/>
 		<h:commandButton style="margin-left:1cm;" value="Limpar" action="#{pessoaBean.limpar}" image="/resources/img/clear.png" title="Limpar" immediate="true"/>
+		</center>
 		</h:panelGroup>
+				
+		</b:panel>		
 				
 		</h:panelGrid>
 		</h:form>
 		
-		<h:form>
-		<br/>
+		<h:form style="margin: 1% 25% 3% 25%;">
 		
+		<b:panel>
 		<b:dataTable value="#{pessoaBean.pessoas}" var="pessoa" border="1" cellspacing="2" cellpadding="6">
 		<f:facet name="header">
-			Lista de Usuários Cadastrados
+			<center><h3>Lista de Usuários Cadastrados</h3></center>
+			<br/>
 		</f:facet>
 		
-			<h:column>
+			<b:column>
 				<f:facet name="header">Foto</f:facet>
 				<h:commandLink actionListener="#{pessoaBean.download}">
 				<h:graphicImage width="60" height="60" value="#{pessoa.fotoIconBase64}"/>
 				<f:param name="fileDownloadId" value="#{pessoa.id}" />
 				</h:commandLink>
-			</h:column>
+			</b:column>
 		
-			<h:column>
+			<b:column>
 				<f:facet name="header">Id</f:facet>
-				<h:outputText value="#{pessoa.id}"/>
-			</h:column>
+				<h:outputLabel value="#{pessoa.id}"/>
+			</b:column>
 		
-			<h:column>
+			<b:column>
 				<f:facet name="header">Nome</f:facet>
-				<h:outputText value="#{pessoa.nome}"/>
-			</h:column>
+				<h:outputLabel value="#{pessoa.nome}"/>
+			</b:column>
 			
-			<h:column>
+			<b:column>
 				<f:facet name="header">Sobrenome</f:facet>
-				<h:outputText value="#{pessoa.sobrenome}"/>
-			</h:column>
+				<h:outputLabel value="#{pessoa.sobrenome}"/>
+			</b:column>
 			
-			<h:column>
+			<b:column>
 				<f:facet name="header">Sexo</f:facet>
-				<h:outputText value="#{pessoa.sexo}"/>
-			</h:column>
+				<h:outputLabel value="#{pessoa.sexo}"/>
+			</b:column>
 			
-			<h:column>
+			<b:column>
 				<f:facet name="header">Editar</f:facet>
 				<h:commandLink title="Editar" immediate="true" action="#{pessoaBean.editar}">
 					<f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}" />
 					<h:graphicImage value="/resources/img/edit.png"/>				
 				</h:commandLink>
-			</h:column>
+			</b:column>
 			
-			<h:column rendered="#{pessoaBean.permiteAcesso('Administrador')}">
+			<b:column rendered="#{pessoaBean.permiteAcesso('Administrador')}">
 				<f:facet name="header">Excluir</f:facet>
 				<h:commandLink action="#{pessoaBean.remove}" title="Excluir" immediate="true">
 					<f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}" />	
 					<h:graphicImage value="/resources/img/delete.png"/>				
 				</h:commandLink>
-			</h:column>
+			</b:column>
 		
 		</b:dataTable>
+		</b:panel>
 		</h:form>
 
 	

@@ -13,27 +13,32 @@
 
 	<b:messages autoUpdate="true" id="msg"/>
 	
-	<h:form id="formLogin" style="margin-top:18%; margin-left:36%;">
+	<h:form id="formLogin" style="margin-top:15%; margin-left:35%; margin-right:35%; margin-buttom:15%;">
 	
 		<h1>Realize o Login</h1>
 		
-		<h:panelGrid columns="3">
+		<h:panelGrid columns="1">
 		
-			<b:column>
-			<h:outputLabel value="Login: "/>
-			<b:inputText id="login" value="#{pessoaBean.pessoa.login}" required="true" requiredMessage="Informe o login"/>
-			</b:column>
+			<b:panel>
+		
+				<b:column>
+					<h:outputLabel value="Login: "/>
+					<b:inputText id="login" value="#{pessoaBean.pessoa.login}" required="true" requiredMessage="Informe o login"/>
+				</b:column>
+				
+				<b:column>
+					<h:outputLabel value="Senha: "/>
+					<b:inputSecret id="senha" value="#{pessoaBean.pessoa.senha}" required="true" requiredMessage="Informe a senha"/>
+				</b:column>
 			
-			<b:column>
-			<h:outputLabel value="Senha: "/>
-			<b:inputSecret id="senha" value="#{pessoaBean.pessoa.senha}" required="true" requiredMessage="Informe a senha"/>
-			</b:column>
+				<b:column>
+					<b:commandButton value="Acessar" action="#{pessoaBean.logar}" style="width: 100%;"/>
+				</b:column>
+				
+			</b:panel>
 		
 		</h:panelGrid>
 		
-		<b:column>
-		<b:commandButton value="Acessar" action="#{pessoaBean.logar}" style="width: 47%;"/>
-		</b:column>
 	</h:form>
 
 </h:body>
