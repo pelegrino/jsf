@@ -1,6 +1,7 @@
 package br.com.repository;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -45,6 +46,12 @@ public class IDaoLancamentosImpl implements IDaoLancamento, Serializable {
 		transaction.commit();
 		
 		return lista;
+	}
+
+	@Override
+	public List<Lancamento> relatorioLancamento(String numNota, String empresaDestino, Date datainicio, Date datafim) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
