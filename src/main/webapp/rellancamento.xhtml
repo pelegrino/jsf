@@ -58,6 +58,7 @@
 		<b:dataTable value="#{rellancamento.lancamentos}" var="Lanc" border="2" pdf="true" excel="true" >
 					
 			<b:dataTableColumn value="#{Lanc.id}" label="Id"/>
+			<b:dataTableColumn value="#{Lanc.numeroNotaFiscal}" label="Nota"/>
 			<b:dataTableColumn value="#{Lanc.empresaDestino}" label="Empresa"/>
 			<b:dataTableColumn value="#{Lanc.datainicio}" label="Início"/>
 			<b:dataTableColumn value="#{Lanc.dataFim}" label="Fim"/>

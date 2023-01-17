@@ -1,6 +1,7 @@
 package br.com.repository;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -50,8 +51,26 @@ public class IDaoLancamentosImpl implements IDaoLancamento, Serializable {
 
 	@Override
 	public List<Lancamento> relatorioLancamento(String numNota, String empresaDestino, Date datainicio, Date datafim) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<Lancamento> lancamentos = new ArrayList<Lancamento>();
+		
+		StringBuilder sql = new StringBuilder();
+		
+		sql.append(" select l from Lancamento l ");
+		
+		if (datainicio == null && datafim == null && numNota == null && empresaDestino != null && !empresaDestino.isEmpty()) {
+			sql.append(" where l.empresaDestino = '").append(empresaDestino.trim()).append("'");
+			
+			
+		}
+		
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();	
+		
+		lancamentos = entityManager.createQuery(sql.toString()).getResultList();
+		transaction.commit();
+		
+		return lancamentos;
 	}
 
 }
