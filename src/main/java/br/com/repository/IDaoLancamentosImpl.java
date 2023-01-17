@@ -18,6 +18,21 @@ public class IDaoLancamentosImpl implements IDaoLancamento, Serializable {
 	@Inject
 	private EntityManager entityManager;
 	
+	
+	@Override
+	public List<Lancamento> consultarLimit10(Long codUser) {
+		List<Lancamento> lista = null;
+		
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		
+		lista = entityManager.createQuery(" from Lancamento where usuario.id = " + codUser + " order by id desc").setMaxResults(10).getResultList();
+		
+		transaction.commit();
+		
+		return lista;
+	}
+	
 	@Override
 	public List<Lancamento> consultar(Long codUser) {
 		List<Lancamento> lista = null;
