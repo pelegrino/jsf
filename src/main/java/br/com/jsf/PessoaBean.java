@@ -263,7 +263,7 @@ public class PessoaBean implements Serializable {
 			}
 		}
 	
-	@SuppressWarnings("unchecked")
+
 	public String editar() {
 		if (pessoa.getCidades() != null) {
 			Estados estado = pessoa.getCidades().getEstados();

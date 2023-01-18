@@ -251,21 +251,23 @@
 				<h:outputLabel value="#{pessoa.sexo}"/>
 			</b:column>
 			
-			<b:column>
+			<!-- Atenção com os botões deve ficar com h e em form separado -->
+			
+			<h:column>
 				<f:facet name="header">Editar</f:facet>
 				<h:commandLink title="Editar" immediate="true" action="#{pessoaBean.editar}">
 					<f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}" />
 					<h:graphicImage value="/resources/img/edit.png"/>				
 				</h:commandLink>
-			</b:column>
+			</h:column>
 			
-			<b:column rendered="#{pessoaBean.permiteAcesso('Administrador')}">
+			<h:column rendered="#{pessoaBean.permiteAcesso('Administrador')}">
 				<f:facet name="header">Excluir</f:facet>
 				<h:commandLink action="#{pessoaBean.remove}" title="Excluir" immediate="true">
 					<f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}" />	
 					<h:graphicImage value="/resources/img/delete.png"/>				
 				</h:commandLink>
-			</b:column>
+			</h:column>
 		
 		</b:dataTable>
 		</b:panel>
