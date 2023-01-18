@@ -1,6 +1,7 @@
 package br.com.repository;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -50,7 +51,7 @@ public class IDaoLancamentosImpl implements IDaoLancamento, Serializable {
 	}
 
 	@Override
-	public List<Lancamento> relatorioLancamento(String numNota, String empresaDestino, Date datainicio, Date datafim) {
+	public List<Lancamento> relatorioLancamento(String empresaDestino, Date datainicio, Date datafim) {
 		
 		List<Lancamento> lancamentos = new ArrayList<Lancamento>();
 		
@@ -58,11 +59,41 @@ public class IDaoLancamentosImpl implements IDaoLancamento, Serializable {
 		
 		sql.append(" select l from Lancamento l ");
 		
-		if (datainicio == null && datafim == null && numNota == null && empresaDestino != null && !empresaDestino.isEmpty()) {
-			sql.append(" where l.empresaDestino = '").append(empresaDestino.trim()).append("'");
+		
+		if (datainicio == null && datafim == null && empresaDestino != null && !empresaDestino.isEmpty()) {
+			sql.append(" where upper(l.empresaDestino) = '").append(empresaDestino.trim()).append("'");
 			
+		} else if (empresaDestino == null || (empresaDestino !=null && empresaDestino.isEmpty())
+					&& datainicio != null && datafim == null) {
 			
-		}
+			String datainicioString = new SimpleDateFormat("yyyy-MM-dd").format(datainicio);
+			sql.append(" where l.datainicio >= '").append(datainicioString).append("'");
+			
+		} else if (empresaDestino == null || (empresaDestino !=null && empresaDestino.isEmpty())
+				&& datainicio == null && datafim != null) {
+			
+			String datafimString = new SimpleDateFormat("yyyy-MM-dd").format(datafim);
+			sql.append(" where l.dataFim <= '").append(datafimString).append("'");
+		
+		} else if (empresaDestino == null || (empresaDestino !=null && empresaDestino.isEmpty())
+				&& datainicio != null && datafim != null) {
+		
+			String datainicioString = new SimpleDateFormat("yyyy-MM-dd").format(datainicio);
+			String datafimString = new SimpleDateFormat("yyyy-MM-dd").format(datafim);
+			sql.append(" where l.datainicio >= '").append(datainicioString).append("' ");
+			sql.append(" and l.dataFim <= '").append(datafimString).append("' ");
+			
+		} else if (empresaDestino != null && empresaDestino.isEmpty()
+				&& datainicio != null && datafim != null) {
+		
+			String datainicioString = new SimpleDateFormat("yyyy-MM-dd").format(datainicio);
+			String datafimString = new SimpleDateFormat("yyyy-MM-dd").format(datafim);
+			sql.append(" where l.datainicio >= '").append(datainicioString).append("' ");
+			sql.append(" and l.dataFim <= '").append(datafimString).append("' ");
+			sql.append(" and upper(l.empresaDestino) = '").append(empresaDestino.trim()).append("' ");
+		
+		}	
+	
 		
 		EntityTransaction transaction = entityManager.getTransaction();
 		transaction.begin();	

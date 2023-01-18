@@ -11,5 +11,5 @@ public interface IDaoLancamento {
 	
 	List<Lancamento> consultarLimit10(Long codUser);
 	
-	List<Lancamento> relatorioLancamento (String numNota, String empresaDestino, Date datainicio, Date datafim);
+	List<Lancamento> relatorioLancamento (String empresaDestino, Date datainicio, Date datafim);
 }

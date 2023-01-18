@@ -34,13 +34,8 @@
 			</b:column>
 			
 			<b:column>
-				<h:outputLabel value="Número da Nota"/>
-				<b:inputText value="#{rellancamento.numNota}"/>
-			</b:column>
-			
-			<b:column>
 				<h:outputLabel value="Empresa"/>
-				<b:inputText value="#{rellancamento.empresaDestino}"/>
+				<b:inputText value="#{rellancamento.empresaDestino}" onblur="this.value = this.value.toUpperCase();"/>
 			</b:column>
 			
 			</b:panel>

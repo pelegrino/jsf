@@ -21,7 +21,6 @@ public class RelLancamento implements Serializable {
 	
 	private Date datainicio;
 	private Date datafim;
-	private String numNota;
 	private String empresaDestino;
 
 	private List<Lancamento> lancamentos = new ArrayList<Lancamento>();
@@ -50,14 +49,6 @@ public class RelLancamento implements Serializable {
 		this.datafim = datafim;
 	}
 
-	public String getNumNota() {
-		return numNota;
-	}
-
-	public void setNumNota(String numNota) {
-		this.numNota = numNota;
-	}
-
 	public String getEmpresaDestino() {
 		return empresaDestino;
 	}
@@ -84,11 +75,11 @@ public class RelLancamento implements Serializable {
 	
 	public void buscarLancamento() {
 		
-		if (datainicio == null && datafim == null && numNota == null && empresaDestino == null) {
+		if (datainicio == null && datafim == null && empresaDestino == null) {
 			lancamentos = daoGeneric.getListEntity(Lancamento.class);
 	
 		} else {
-			lancamentos = daoLancamento.relatorioLancamento(numNota, empresaDestino, datainicio, datafim);
+			lancamentos = daoLancamento.relatorioLancamento(empresaDestino, datainicio, datafim);
 			
 		}
 		
