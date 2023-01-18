@@ -52,7 +52,7 @@
 		
 		<b:column>
 		<h:outputLabel value="Idade: "/>
-		<b:inputText value="#{pessoaBean.pessoa.idade}"/>	
+		<b:inputText value="#{pessoaBean.pessoa.idade}" mask="numeric"/>	
 		</b:column>
 		
 		<b:column>
@@ -84,7 +84,7 @@
 		<b:column>
 		<br/>
 		<h:outputLabel value="CEP:"/>
-		<b:inputText value="#{pessoaBean.pessoa.cep}">
+		<b:inputText value="#{pessoaBean.pessoa.cep}" mask="99999-999">
 			<f:ajax event="blur" execute="@this" listener="#{pessoaBean.pesquisaCep}" render="logradouro complemento bairro localidade uf unidade ibge gia"/>
 		</b:inputText>
 		</b:column>

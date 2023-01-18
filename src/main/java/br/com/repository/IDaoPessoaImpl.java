@@ -1,7 +1,9 @@
 package br.com.repository;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.model.SelectItem;
@@ -52,6 +54,59 @@ public class IDaoPessoaImpl implements IDaoPessoa, Serializable {
 		}
 		
 		return selectItems;
+	}
+
+	@Override
+	public List<Pessoa> relatorioPessoa(String nome, Date datainicio, Date datafim) {
+		
+		List<Pessoa> pessoas = new ArrayList<Pessoa>();
+		
+		StringBuilder sql = new StringBuilder();
+		
+		sql.append(" select l from Pessoa l ");
+		
+		
+		if (datainicio == null && datafim == null && nome != null && !nome.isEmpty()) {
+			sql.append(" where upper(l.nome) like '%").append(nome.trim().toUpperCase()).append("%'");
+			
+		} else if (nome == null || (nome !=null && nome.isEmpty())
+					&& datainicio != null && datafim == null) {
+			
+			String datainicioString = new SimpleDateFormat("yyyy-MM-dd").format(datainicio);
+			sql.append(" where l.dataNascimento >= '").append(datainicioString).append("'");
+			
+		} else if (nome == null || (nome !=null && nome.isEmpty())
+				&& datainicio == null && datafim != null) {
+			
+			String datafimString = new SimpleDateFormat("yyyy-MM-dd").format(datafim);
+			sql.append(" where l.dataNascimento <= '").append(datafimString).append("'");
+		
+		} else if (nome == null || (nome !=null && nome.isEmpty())
+				&& datainicio != null && datafim != null) {
+		
+			String datainicioString = new SimpleDateFormat("yyyy-MM-dd").format(datainicio);
+			String datafimString = new SimpleDateFormat("yyyy-MM-dd").format(datafim);
+			sql.append(" where l.dataNascimento >= '").append(datainicioString).append("' ");
+			sql.append(" and l.dataNascimento <= '").append(datafimString).append("' ");
+			
+		} else if (nome != null && nome.isEmpty()
+				&& datainicio != null && datafim != null) {
+		
+			String datainicioString = new SimpleDateFormat("yyyy-MM-dd").format(datainicio);
+			String datafimString = new SimpleDateFormat("yyyy-MM-dd").format(datafim);
+			sql.append(" where l.dataNascimento >= '").append(datainicioString).append("' ");
+			sql.append(" and l.dataNascimento <= '").append(datafimString).append("' ");
+			sql.append(" and upper(l.nome) like '%").append(nome.trim().toUpperCase()).append("%' ");
+		
+		}
+		
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();	
+		
+		pessoas = entityManager.createQuery(sql.toString()).getResultList();
+		transaction.commit();
+		
+		return pessoas;
 	}
 
 }

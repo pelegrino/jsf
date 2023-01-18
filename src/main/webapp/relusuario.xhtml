@@ -7,7 +7,7 @@
 	  xmlns:ui = "http://java.sun.com/jsf/facelets">
 
 <h:head>
-	<title>Relatório de Lançamentos</title>
+	<title>Relatório de Usuários</title>
 
 </h:head>
 
@@ -18,31 +18,31 @@
 	<b:messages id="msg"/>
 	
 	
-	<h:form id="formLancamento" style="margin: 2% 25% 3% 25%;">
+	<h:form id="formPessoas" style="margin: 2% 25% 3% 25%;">
 		<center><h3>Relatório de Lançamentos</h3></center><br/>
 		
 		<b:panelGrid columns="1">
 			<b:panel>
 			<b:column>
 				<h:outputLabel value="Data Inicial"/>
-				<b:datepicker value="#{rellancamento.datainicio}"/>
+				<b:datepicker value="#{relUsuario.datainicio}"/>
 			</b:column>
 			
 			<b:column>
 				<h:outputLabel value="Data Fim"/>
-				<b:datepicker value="#{rellancamento.datafim}"/>
+				<b:datepicker value="#{relUsuario.datafim}"/>
 			</b:column>
 			
 			<b:column>
-				<h:outputLabel value="Empresa"/>
-				<b:inputText value="#{rellancamento.empresaDestino}" />
+				<h:outputLabel value="Nome"/>
+				<b:inputText value="#{relUsuario.nome}" />
 			</b:column>
 			
 			</b:panel>
 
 		</b:panelGrid>
 		<center>
-		<b:commandButton value="Buscar" action="#{rellancamento.buscarLancamento}" look="primary"/>
+		<b:commandButton value="Buscar" action="#{relUsuario.relPessoa}" look="primary"/>
 		</center>
 
 	</h:form><br/>
@@ -50,13 +50,10 @@
 		
 	<h:form style="margin: 1% 25% 3% 25%;">
 		<b:panel title="Resultado" collapsible="false" look="success">
-		<b:dataTable value="#{rellancamento.lancamentos}" var="Lanc" border="2" pdf="true" excel="true" >
+		<b:dataTable value="#{relUsuario.pessoas}" var="p" border="2" pdf="true" excel="true" >
 					
-			<b:dataTableColumn value="#{Lanc.id}" label="Id"/>
-			<b:dataTableColumn value="#{Lanc.numeroNotaFiscal}" label="Nota"/>
-			<b:dataTableColumn value="#{Lanc.empresaDestino}" label="Empresa"/>
-			<b:dataTableColumn value="#{Lanc.datainicio}" label="Início"/>
-			<b:dataTableColumn value="#{Lanc.dataFim}" label="Fim"/>
+			<b:dataTableColumn value="#{p.id}" label="Id"/>
+			<b:dataTableColumn value="#{p.nome}" label="Nome"/>
 			
 		</b:dataTable>
 		</b:panel>

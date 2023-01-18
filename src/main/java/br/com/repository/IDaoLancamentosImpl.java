@@ -61,7 +61,7 @@ public class IDaoLancamentosImpl implements IDaoLancamento, Serializable {
 		
 		
 		if (datainicio == null && datafim == null && empresaDestino != null && !empresaDestino.isEmpty()) {
-			sql.append(" where upper(l.empresaDestino) = '").append(empresaDestino.trim()).append("'");
+			sql.append(" where upper(l.empresaDestino) like '%").append(empresaDestino.trim().toUpperCase()).append("%' ");
 			
 		} else if (empresaDestino == null || (empresaDestino !=null && empresaDestino.isEmpty())
 					&& datainicio != null && datafim == null) {
@@ -90,7 +90,7 @@ public class IDaoLancamentosImpl implements IDaoLancamento, Serializable {
 			String datafimString = new SimpleDateFormat("yyyy-MM-dd").format(datafim);
 			sql.append(" where l.datainicio >= '").append(datainicioString).append("' ");
 			sql.append(" and l.dataFim <= '").append(datafimString).append("' ");
-			sql.append(" and upper(l.empresaDestino) = '").append(empresaDestino.trim()).append("' ");
+			sql.append(" and upper(l.empresaDestino) like '%").append(empresaDestino.trim().toUpperCase()).append("%' ");
 		
 		}	
 	
