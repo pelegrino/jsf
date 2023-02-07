@@ -14,6 +14,7 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.ForeignKey;
 
+@SuppressWarnings("deprecation")
 @Entity
 public class Lancamento implements Serializable {
 

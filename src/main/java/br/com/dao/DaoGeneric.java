@@ -60,6 +60,7 @@ public class DaoGeneric<E> implements Serializable {
 		
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<E> getListEntity(Class<E> entidade) {
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
@@ -71,6 +72,7 @@ public class DaoGeneric<E> implements Serializable {
 	}
 	
 	
+	@SuppressWarnings("unchecked")
 	public List<E> getListEntityLimit10(Class<E> entidade) {
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();

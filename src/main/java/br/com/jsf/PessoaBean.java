@@ -270,6 +270,7 @@ public class PessoaBean implements Serializable {
 			pessoa.setEstados(estado);
 			
 			//duvida se criei certo o jpautil
+			@SuppressWarnings("unchecked")
 			List<Cidades> cidades = jpaUtil.getEntityManager().createQuery("from Cidades where estados.id = " + estado.getId()).getResultList();
 			
 			List<SelectItem> selectItemsCidade = new ArrayList<SelectItem>();

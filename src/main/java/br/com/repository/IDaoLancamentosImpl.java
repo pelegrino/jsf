@@ -22,6 +22,7 @@ public class IDaoLancamentosImpl implements IDaoLancamento, Serializable {
 	private EntityManager entityManager;
 	
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Lancamento> consultarLimit10(Long codUser) {
 		List<Lancamento> lista = null;
@@ -36,6 +37,7 @@ public class IDaoLancamentosImpl implements IDaoLancamento, Serializable {
 		return lista;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Lancamento> consultar(Long codUser) {
 		List<Lancamento> lista = null;
@@ -50,6 +52,7 @@ public class IDaoLancamentosImpl implements IDaoLancamento, Serializable {
 		return lista;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Lancamento> relatorioLancamento(String empresaDestino, Date datainicio, Date datafim) {
 		

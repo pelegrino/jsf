@@ -56,6 +56,7 @@ public class IDaoPessoaImpl implements IDaoPessoa, Serializable {
 		return selectItems;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Pessoa> relatorioPessoa(String nome, Date datainicio, Date datafim) {
 		
